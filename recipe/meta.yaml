@@ -11,17 +11,17 @@ source:
 
 build:
   noarch: python
-  number: 0
+  number: 1
   script: {{ PYTHON }} -m pip install . -vv
   entry_points:
     - soilgrids=soilgrids.cli:main
 
 requirements:
   host:
-    - python >=3.6
+    - python {{ python_min }}
     - pip
   run:
-    - python >=3.6
+    - python >={{ python_min }}
     - numpy
     - rioxarray
     - xarray
@@ -33,6 +33,8 @@ requirements:
     - owslib
 
 test:
+  requires:
+    - python {{ python_min }}
   imports:
     - soilgrids
 
